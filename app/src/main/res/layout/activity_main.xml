@@ -2,7 +2,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F0F0F"> <ScrollView
+    android:background="#263238">
+
+    <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@id/pannelloControlli"
@@ -13,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#1A1A1A"
+        android:background="#455A64"
         android:padding="2dp"
         android:orientation="vertical" />
 </ScrollView>
@@ -23,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:layout_alignParentBottom="true"
-        android:background="#161616"
+        android:background="#37474F"
         android:elevation="20dp">
 
         <FrameLayout

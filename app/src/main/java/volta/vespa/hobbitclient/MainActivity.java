@@ -1,7 +1,6 @@
 package volta.vespa.hobbitclient;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import volta.vespa.hobbitclient.business.GameEventListener;
-import volta.vespa.hobbitclient.business.GameCoordinator;
 import volta.vespa.hobbitclient.bean.Obstacle;
 import volta.vespa.hobbitclient.bean.Player;
+import volta.vespa.hobbitclient.business.GameCoordinator;
+import volta.vespa.hobbitclient.business.GameEventListener;
 
 public class MainActivity extends AppCompatActivity implements GameEventListener {
 
@@ -68,11 +67,10 @@ public class MainActivity extends AppCompatActivity implements GameEventListener
         runOnUiThread(() -> renderWorld(players, obstacles));
     }
 
-    // Costanti di stile
-    private static final int COLOR_EMPTY = 0xFF222222;
-    private static final int COLOR_OBSTACLE = 0xFFFF3D00; // Rosso Neon
-    private static final int COLOR_PLAYER_LOCAL = 0xFF00E5FF; // Ciano
-    private static final int COLOR_PLAYER_OTHER = 0xFF76FF03; // Lime
+    private static final int COLOR_EMPTY = 0xFF37474F;
+    private static final int COLOR_OBSTACLE = 0xFFFF5252;
+    private static final int COLOR_PLAYER_LOCAL = 0xFF00E5FF;
+    private static final int COLOR_PLAYER_OTHER = 0xFFB2FF59;
 
     private void renderWorld(List<Player> players, List<Obstacle> obstacles) {
         gridCells.forEach(cell -> cell.setBackgroundColor(COLOR_EMPTY));
