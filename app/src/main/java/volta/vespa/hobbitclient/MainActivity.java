@@ -2,6 +2,7 @@ package volta.vespa.hobbitclient;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -31,19 +32,35 @@ public class MainActivity extends AppCompatActivity implements GameEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Genera un nome casuale tra Player1 e Player99
+        // Generazione nome casuale (come fatto in precedenza)
         int randomNumber = (int) (Math.random() * 99) + 1;
         localPlayerName = "Player" + randomNumber;
-
-        // Mostra il nome generato con un Toast così l'utente sa chi è
-        Toast.makeText(this, "Giochi come: " + localPlayerName, Toast.LENGTH_LONG).show();
 
         buildDynamicGrid();
         bindControls();
 
-        // Passa il nome generato al coordinator
-        coordinator = new GameCoordinator(this, localPlayerName);
-        coordinator.connect();
+        // Nuova logica di connessione
+        EditText editIp = findViewById(R.id.editIp);
+        EditText editPorta = findViewById(R.id.editPorta);
+        Button btnConnetti = findViewById(R.id.btnConnetti);
+
+        btnConnetti.setOnClickListener(v -> {
+            String ip = editIp.getText().toString().trim();
+            String porta = editPorta.getText().toString().trim();
+
+            if (!ip.isEmpty() && !porta.isEmpty()) {
+                String fullAddress = ip + ":" + porta;
+                coordinator = new GameCoordinator(this, localPlayerName, fullAddress);
+                coordinator.connect();
+
+                // Opzionale: disabilita i campi dopo la connessione
+                btnConnetti.setEnabled(false);
+                editIp.setEnabled(false);
+                editPorta.setEnabled(false);
+            } else {
+                Toast.makeText(this, "Inserisci IP e Porta!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void bindControls() {

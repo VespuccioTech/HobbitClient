@@ -15,7 +15,7 @@ public class RealTimeClient {
     private static final String SERVER_URL = "ws://192.168.1.5:8080";
 
     private WebSocket socket;
-
+    private final String fullUrl;
     private final Consumer<String> messageCallback;
     private final Consumer<String> errorCallback;
     private final Runnable openCallback;
@@ -24,17 +24,19 @@ public class RealTimeClient {
     public RealTimeClient(Consumer<String> messageCallback,
                           Consumer<String> errorCallback,
                           Runnable openCallback,
-                          String playerName) { // Aggiungi il parametro al costruttore
+                          String playerName,
+                          String serverAddress) { // Nuovo parametro
 
         this.messageCallback = messageCallback;
         this.errorCallback = errorCallback;
         this.openCallback = openCallback;
-        this.playerName = playerName; // Salva il nome
+        this.playerName = playerName;
+        this.fullUrl = "ws://" + serverAddress; // Costruiamo l'URL
     }
 
     public void connect() {
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(SERVER_URL).build();
+        Request request = new Request.Builder().url(this.fullUrl).build(); // Usiamo l'URL dinamico
         socket = client.newWebSocket(request, new InternalListener());
     }
 

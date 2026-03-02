@@ -2,11 +2,51 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="50dp"
     android:background="#263238">
+
+    <LinearLayout
+        android:id="@+id/layoutConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#37474F"
+        android:elevation="4dp">
+
+        <EditText
+            android:id="@+id/editIp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="IP (es. 192.168.1.5)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0BEC5"
+            android:inputType="textUri" />
+
+        <EditText
+            android:id="@+id/editPorta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Porta"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0BEC5"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnConnetti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:backgroundTint="#00E5FF"
+            android:textColor="#263238" />
+    </LinearLayout>
 
     <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:layout_below="@id/layoutConfig"
     android:layout_above="@id/pannelloControlli"
     android:padding="8dp">
 

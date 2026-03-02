@@ -17,7 +17,7 @@ public class GameCoordinator {
 
     private final String playerName;
 
-    public GameCoordinator(GameEventListener view, String playerName) {
+    public GameCoordinator(GameEventListener view, String playerName, String serverAddress) {
         this.view = view;
         this.playerName = playerName;
 
@@ -25,7 +25,8 @@ public class GameCoordinator {
         socketClient = new RealTimeClient(this::handleIncomingMessage,
                 view::onError,
                 view::onConnected,
-                playerName);
+                playerName,
+                serverAddress);
     }
 
     public void connect() {
