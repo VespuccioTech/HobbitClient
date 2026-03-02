@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F0F0F"> <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/pannelloControlli"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/campoDinamico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#1A1A1A"
+        android:padding="2dp"
+        android:orientation="vertical" />
+</ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/pannelloControlli"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_alignParentBottom="true"
+        android:background="#161616"
+        android:elevation="20dp">
+
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true">
+
+            <Button
+                android:id="@+id/btnUp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="top|center_horizontal"
+                android:backgroundTint="#2D2D2D"
+                android:text="▲"
+                android:textColor="#00D4FF" />
+
+            <Button
+                android:id="@+id/btnSx"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="left|center_vertical"
+                android:backgroundTint="#2D2D2D"
+                android:text="◀"
+                android:textColor="#00D4FF" />
+
+            <Button
+                android:id="@+id/btnDx"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="right|center_vertical"
+                android:backgroundTint="#2D2D2D"
+                android:text="▶"
+                android:textColor="#00D4FF" />
+
+            <Button
+                android:id="@+id/btnDown"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:backgroundTint="#2D2D2D"
+                android:text="▼"
+                android:textColor="#00D4FF" />
+        </FrameLayout>
+    </RelativeLayout>
+</RelativeLayout>
