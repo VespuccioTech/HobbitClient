@@ -19,14 +19,17 @@ public class RealTimeClient {
     private final Consumer<String> messageCallback;
     private final Consumer<String> errorCallback;
     private final Runnable openCallback;
+    private final String playerName;
 
     public RealTimeClient(Consumer<String> messageCallback,
                           Consumer<String> errorCallback,
-                          Runnable openCallback) {
+                          Runnable openCallback,
+                          String playerName) { // Aggiungi il parametro al costruttore
 
         this.messageCallback = messageCallback;
         this.errorCallback = errorCallback;
         this.openCallback = openCallback;
+        this.playerName = playerName; // Salva il nome
     }
 
     public void connect() {
@@ -49,7 +52,7 @@ public class RealTimeClient {
         try {
             JSONObject json = new JSONObject();
             json.put("comando", "login");
-            json.put("nome", "Player1");
+            json.put("nome", this.playerName); // Usa il nome generato invece di "Player1"
             socket.send(json.toString());
         } catch (Exception ignored) {
         }

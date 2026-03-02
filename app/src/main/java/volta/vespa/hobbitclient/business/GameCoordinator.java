@@ -21,9 +21,11 @@ public class GameCoordinator {
         this.view = view;
         this.playerName = playerName;
 
+        // Passa il playerName al RealTimeClient (aggiungeremo il parametro nel prossimo step)
         socketClient = new RealTimeClient(this::handleIncomingMessage,
                 view::onError,
-                view::onConnected);
+                view::onConnected,
+                playerName);
     }
 
     public void connect() {

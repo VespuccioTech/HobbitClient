@@ -24,17 +24,25 @@ public class MainActivity extends AppCompatActivity implements GameEventListener
     private static final int COLUMNS = 8;
     private static final int ROWS = 100;
 
-    private final String LOCAL_PLAYER = "Player1";
+    private String localPlayerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Genera un nome casuale tra Player1 e Player99
+        int randomNumber = (int) (Math.random() * 99) + 1;
+        localPlayerName = "Player" + randomNumber;
+
+        // Mostra il nome generato con un Toast così l'utente sa chi è
+        Toast.makeText(this, "Giochi come: " + localPlayerName, Toast.LENGTH_LONG).show();
+
         buildDynamicGrid();
         bindControls();
 
-        coordinator = new GameCoordinator(this, LOCAL_PLAYER);
+        // Passa il nome generato al coordinator
+        coordinator = new GameCoordinator(this, localPlayerName);
         coordinator.connect();
     }
 
@@ -74,11 +82,10 @@ public class MainActivity extends AppCompatActivity implements GameEventListener
 
     private void renderWorld(List<Player> players, List<Obstacle> obstacles) {
         gridCells.forEach(cell -> cell.setBackgroundColor(COLOR_EMPTY));
-
         obstacles.forEach(b -> paintCell(b.getX(), b.getY(), COLOR_OBSTACLE));
 
         players.forEach(p -> {
-            int color = p.getName().equals(LOCAL_PLAYER) ? COLOR_PLAYER_LOCAL : COLOR_PLAYER_OTHER;
+            int color = p.getName().equals(localPlayerName) ? COLOR_PLAYER_LOCAL : COLOR_PLAYER_OTHER;
             paintCell(p.getX(), p.getY(), color);
         });
     }
